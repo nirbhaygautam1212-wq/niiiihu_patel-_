@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nirbhay Balaghati™®© | The Black Box Report</title>
+    <style>
+        /* Black Box Terminal Style */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #000000;
+            color: #00FF41; /* Neon green */
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+        /* Loading Screen */
+        #loading {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #000;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            z-index: 9999; transition: opacity 0.5s;
+        }
+        .loader { font-size: 24px; animation: blink 1s infinite; }
+        .dots::after { content: ''; animation: dots 1.5s steps(4) infinite; }
+        @keyframes blink { 0%,50%{opacity:1;} 51%,100%{opacity:0;} }
+        @keyframes dots { 0%{content:'   ';} 25%{content:' .'}; 50%{content:'..'}; 75%{content:'...'}; }
+        /* Glitch Effect */
+        .glitch {
+            position: relative;
+            font-size: 2.5rem; font-weight: bold; text-transform: uppercase;
+            animation: glitch-anim 2s infinite;
+        }
+        .glitch::before, .glitch::after {
+            content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        }
+        .glitch::before { animation: glitch-top 1s infinite; color: #FFBF00; left: 2px; text-shadow: -2px 0 #00FF41; }
+        .glitch::after { animation: glitch-bottom 1.5s infinite; color: #00FF41; left: -2px; text-shadow: 2px 0 #FFBF00; }
+        @keyframes glitch-anim { 0%,100%{transform:translate(0);} 20%{transform:translate(-2px,2px);} 40%{transform:translate(-2px,-2px);} 60%{transform:translate(2px,2px);} 80%{transform:translate(2px,-2px);} }
+        @keyframes glitch-top { 0%,100%{transform:translate(0);} 10%{transform:translate(-2px,-2px);} 20%{transform:translate(-4px,0);} 30%{transform:translate(-4px,2px);} 40%{transform:translate(-2px,2px);} 50%{transform:translate(0);} }
+        @keyframes glitch-bottom { 0%,100%{transform:translate(0);} 10%{transform:translate(2px,2px);} 20%{transform:translate(4px,0);} 30%{transform:translate(4px,-2px);} 40%{transform:translate(2px,-2px);} 50%{transform:translate(0);} }
+        /* Layout */
+        header { padding: 2rem; text-align: center; border-bottom: 1px solid #00FF41; }
+        main { max-width: 800px; margin: 0 auto; padding: 2rem; }
+        .news-item {
+            background: rgba(0,255,65,0.05); border: 1px solid #00FF41; margin-bottom: 1rem; padding: 1.5rem;
+            position: relative; overflow: hidden;
+        }
+        .news-item::before { content: '['; color: #FFBF00; position: absolute; left: 10px; top: 10px; font-size: 20px; }
+        .news-item::after { content: ']'; color: #FFBF00; position: absolute; right: 10px; bottom: 10px; font-size: 20px; }
+        .title { color: #FFBF00; font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .date { color: #666; font-size: 0.9rem; }
+        footer { padding: 2rem; text-align: center; border-top: 1px solid #00FF41; color: #666; font-size: 0.9rem; }
+        @media (max-width: 600px) { .glitch { font-size: 2rem; } body { font-size: 14px; } }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading">
+        <div class="loader">DECRYPTING NIRBHAY BALAGHATI™®©</div>
+        <div style="font-size:18px; margin-top:1rem;">[Balaghat Regional Intelligence Feed]</div>
+        <div class="dots" style="font-size:20px; margin-top:2rem;">Loading</div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <h1 class="glitch" data-text="The Black Box Report" title="Hover for glitch">The Black Box Report</h1>
+        <p style="color:#FFBF00; font-size:1.2rem; margin-top:0.5rem;">Unfiltered • Encrypted-Style • High-Speed<br>Regional Intelligence for Balaghat & Beyond</p>
+    </header>
+
+    <!-- Main Content: Curated News -->
+    <main>
+        <section id="news-feed">
+            <!-- Dynamic news items populated by JS -->
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        © 2024 Nirbhay Balaghati™®© | <span style="color:#00FF41;">ENCRYPTED TRANSMISSION ACTIVE</span>
+    </footer>
+
+    <script>
+        // Sample Curated News (Balaghat-focused; replace with your API/CMS)
+        const newsData = [
+            { title: "Balaghat Tiger Reserve: Rare Sighting Confirmed", date: "2024-10-05", content: "Motion cams capture elusive melanistic tiger. Local tribes report increased activity near Warahghat.", excerpt: "Unfiltered intel from forest patrols..." },
+            { title: "Highway 543 Collapse Near Lamta", date: "2024-10-04", content: "Monsoon damage strands 50+ vehicles. NHAI deploys emergency crews amid political blame game.", excerpt: "Real-time updates from ground sources..." },
+            { title: "Manganese Mine Strike Escalates", date: "2024-10-03", content: "Workers at Paraswada block demand 30% wage hike. Production halted; MOIL shares dip 2%.", excerpt: "Encrypted worker comms intercepted..." },
+            // Add more via CMS or fetch from your backend
+        ];
+
+        // Automation-Ready JSON Export (for Instagram)
+        window.BlackBoxFeed = newsData; // Accessible globally for scripts
+
+        // Init: Hide loader & render news
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loading').style.opacity = '0';
+                setTimeout(() => document.getElementById('loading').style.display = 'none', 500);
+                renderNews();
+            }, 2000 + Math.random() * 1000); // Authentic "decrypt" delay
+        });
+
+        function renderNews() {
+            const feed = document.getElementById('news-feed');
+            newsData.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'news-item';
+                div.innerHTML = `
+                    <div class="title">${item.title}</div>
+                    <div class="date">${item.date}</div>
+                    <p>${item.excerpt}</p>
+                    <details style="color:#666; margin-top:1rem;"><summary>Full Transmission</summary>${item.content}</details>
+                `;
+                feed.appendChild(div);
+            });
+        }
+
+        // Instagram Automation Hook (Call this from external script/Zapier)
+        function postToInstagram() {
+            console.log('Exporting BlackBoxFeed to IG:', window.BlackBoxFeed);
+            // e.g., fetch('/api/instagram', {method:'POST', body:JSON.stringify(window.BlackBoxFeed)})
+            // Integrate with Insta API or tools like Buffer/Zapier
+        }
+    </script>
+</body>
+</html>
